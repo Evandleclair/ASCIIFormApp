@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormMapApp", "WinFormMapApp\WinFormMapApp.csproj", "{EA0C5C57-F04F-4F77-99BE-67AEA8BAC2B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASCIIFormApp", "WinFormMapApp\ASCIIFormApp.csproj", "{EA0C5C57-F04F-4F77-99BE-67AEA8BAC2B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
