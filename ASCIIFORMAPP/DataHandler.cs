@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinFormMapApp
+namespace ASCIIFormApp
 {
     internal class DataHandler
     {

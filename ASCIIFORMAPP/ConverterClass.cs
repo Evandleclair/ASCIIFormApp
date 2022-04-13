@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ImageMagick;
-namespace WinFormMapApp
+namespace ASCIIFormApp
 {
     internal static class ConverterClass
     {

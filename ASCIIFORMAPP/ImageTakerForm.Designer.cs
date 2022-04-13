@@ -1,4 +1,4 @@
-﻿namespace WinFormMapApp
+﻿namespace ASCIIFormApp
 {
     partial class ImageTakerForm
     {
