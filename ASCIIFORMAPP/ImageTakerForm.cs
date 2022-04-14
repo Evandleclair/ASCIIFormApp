@@ -24,8 +24,16 @@ namespace ASCIIFormApp
 
         private void loadImageButton_Click(object sender, EventArgs e)
         {
-           myHandler.heldImageArray=myMethodBank.LoadAndConvertImage();
-           
+            myHandler.failureFlag = false;
+           myMethodBank.LoadAndConvertImage(myHandler);
+           if (myHandler.failureFlag!=true)
+           {
+                ConverterClass.ConvertToASCII(myHandler);
+           }
+           else
+           {
+                Console.WriteLine("Unable to convert image to ASCII due to an error. Please try again");
+           }
         }
 
         private void openWebcamButton_Click(object sender, EventArgs e)

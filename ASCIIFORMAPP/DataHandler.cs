@@ -9,6 +9,8 @@ namespace ASCIIFormApp
     internal class DataHandler
     {
         internal imageArray heldImageArray;
+        //internal brightnessArray heldBrightnessArray;
+           internal bool failureFlag = false;
         //internal string fileLocation;
     }
 }

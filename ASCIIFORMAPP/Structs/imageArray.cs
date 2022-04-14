@@ -1,11 +1,17 @@
 ﻿struct imageArray
 {
 
-    internal byte[] imgByteArray;
+    internal int[,] imgIntArray;
+    internal Color[][] imgColorArray;
     internal string fileLoc;
-     public imageArray(byte[] ImgByteArray, string FileLoc)
+    internal int imgH, imgW;
+     public imageArray(int[,] ImgIntArray, Color[][] ImgColorArray, string FileLoc, int ImgH, int ImhW)
     {
-        imgByteArray = ImgByteArray;
+        imgIntArray = ImgIntArray;
+        imgColorArray = ImgColorArray;
+        imgH = ImgH;
+        imgW = ImhW;   
         fileLoc = FileLoc;
+
     }
 }
