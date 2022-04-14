@@ -8,8 +8,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="11.1.0" />
-  </ItemGroup>
-
 </Project>

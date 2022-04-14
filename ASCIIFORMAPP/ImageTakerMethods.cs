@@ -8,30 +8,45 @@ namespace ASCIIFormApp
 {
      internal class ImageTakerMethods
     {
-        internal imageArray LoadAndConvertImage()
+        internal void LoadAndConvertImage(DataHandler dataHandler)
         {
-           return ConverterClass.loadImage(LoadImageDialog());
-
-        }
-        internal rawTextFile LoadImageDialog()
-        {
-            string retFilePath = retFilePath = "";
-            rawTextFile retVal = new rawTextFile(retFilePath, "");
-
-            using (OpenFileDialog fileDlog = new OpenFileDialog())
+            rawTextFile rawText = new rawTextFile();
+            rawText=LoadImageDialog(dataHandler);
+            if (rawText.rawFileContent !="failure")
+            { 
+                dataHandler.heldImageArray=ConverterClass.loadImage(rawText);
+            }//end if//
+            else
             {
-                fileDlog.InitialDirectory = "c:\\";
-                fileDlog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                fileDlog.FilterIndex = 2;
-                fileDlog.RestoreDirectory = true;
+                Console.WriteLine("Failed to load image. Please try again");
+            }
+        }//end LoadAndConvertImage//
+        internal rawTextFile LoadImageDialog(DataHandler dataHandler)
+        {
+            try{
+                string retFilePath = retFilePath = "";
+                rawTextFile retVal = new rawTextFile(retFilePath, "");
 
-                if (fileDlog.ShowDialog() == DialogResult.OK)
+                using (OpenFileDialog fileDlog = new OpenFileDialog())
                 {
-                    retVal.rawFilePath = fileDlog.FileName;
-                }//end if//
-            }//end using//
-            return retVal;
-        }//end load image dialog//
+                    fileDlog.InitialDirectory = "c:\\";
+                    fileDlog.Filter = "Image Files|*.jpg;*.jpeg;*.png;|All files (*.*)|*.*";
+                    fileDlog.FilterIndex = 1;
+                    fileDlog.RestoreDirectory = true;
 
+                    if (fileDlog.ShowDialog() == DialogResult.OK)
+                    {
+                       retVal.rawFilePath = fileDlog.FileName;
+                    }//end if//
+                }//end using//
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                dataHandler.failureFlag = true;
+                return new rawTextFile("","");
+            }//end catch
+        }//end load image dialog//
     }
 }
