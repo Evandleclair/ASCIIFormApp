@@ -21,6 +21,45 @@ namespace ASCIIFormApp
                 Console.WriteLine("Failed to load image. Please try again");
             }
         }//end LoadAndConvertImage//
+        internal Font GetScaledFont(Graphics g, Font f, float scale)
+        {
+            return new Font(f.FontFamily,
+                            f.SizeInPoints * scale,
+                            f.Style,
+                            GraphicsUnit.Point,
+                            f.GdiCharSet,
+                            f.GdiVerticalFont);
+        }
+        internal RectangleF GetScaledRect(Graphics g, RectangleF r, float xScale, float yScale)
+        {
+            return new RectangleF((float)Math.Ceiling(r.X * xScale),
+                                (float)Math.Ceiling(r.Y * yScale),
+                                (float)Math.Ceiling(r.Width * xScale),
+                                (float)Math.Ceiling(r.Height * yScale));
+            /*
+             *  return new Rectangle((int)Math.Ceiling(r.X * xScale),
+                                (int)Math.Ceiling(r.Y * yScale),
+                                (int)Math.Ceiling(r.Width * xScale),
+                                (int)Math.Ceiling(r.Height * yScale));
+             */
+        }
+        internal Font GenerateFont (DataHandler myHandler, Graphics g, float hScaleRatio, float wScaleRatio)
+        {
+            //string firstlineofASCII = myHandler.heldASCIIImage.Substring(0, myHandler.heldASCIIImage.IndexOf(Environment.NewLine));
+
+
+            /*
+            float ScaleRatio = (hScaleRatio < wScaleRatio)
+                ? ScaleRatio = hScaleRatio
+                : ScaleRatio = wScaleRatio;
+
+
+            float ScaleFontSize = 12 * ScaleRatio;
+            return new Font(FontFamily.GenericMonospace, ScaleFontSize);
+            */
+            return new Font(FontFamily.GenericMonospace, 12, FontStyle.Regular);
+
+        }
         internal rawTextFile LoadImageDialog(DataHandler dataHandler)
         {
             try{
