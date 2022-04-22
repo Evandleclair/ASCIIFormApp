@@ -9,6 +9,7 @@ namespace ASCIIFormApp
 {
     internal static class ConverterClass
     {
+        //static readonly char[] charKey = "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrieuxnuvczXYUJCLQ0OZnmwqpdbkhcao*#NMW&8%B@@$".ToCharArray();
         static readonly char[] charKey = "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrieuxnuvczXYUJCLQ0OZnmwqpdbkhcao*#NMW&8%B@@$".ToCharArray();
 
         internal static imageArray loadImage(rawTextFile rt)
@@ -39,29 +40,22 @@ namespace ASCIIFormApp
                 {
                    
                     double brightValue = myHandler.heldImageArray.imgIntArray[h,w];
-                    Console.WriteLine("Bright value was" + brightValue + " and so divided by 255 it is" + (brightValue / 255));
+                    //Console.WriteLine("Bright value was" + brightValue + " and so divided by 255 it is" + (brightValue / 255));
                     int charIndex = (int)((brightValue / 255) * 70);
-                    Console.WriteLine("brightness was " + brightValue + " so character will be picked from " + charIndex);
+                    //Console.WriteLine("brightness was " + brightValue + " so character will be picked from " + charIndex);
                     char drawValue = charKey[charIndex];
                     sb.Append(drawValue);
                 }
                 sb.Append("\r\n");
             }
-            Console.WriteLine(sb.ToString());
+           // Console.WriteLine(sb.ToString());
             // foreach (byte b in myHandler.heldImageArray.imgByteArray)
             // {
             //     Console.WriteLine(b.ToString());
             // }
+            myHandler.heldASCIIImage=sb.ToString();
         }
-        internal static string ToReadByteArray(byte[] bytes)
-        {
-            return string.Join(", ", bytes);
-        }
-        internal static string ListBits(byte[] byteArray)
-        {
-            string s = System.Text.Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);
-            return s;
-        }
+       
         internal static Color[][] ToColorArray(Bitmap image)
         {
             Color[][] myMatrix = new Color[image.Height][];
@@ -81,7 +75,7 @@ namespace ASCIIFormApp
             int arrayHeight = cArray.Length;
             int arrayWidth = cArray[0].Length;
             int[,] brightness = new int[arrayHeight,arrayWidth];
-            Console.WriteLine("Array is " + arrayHeight + " + tall and is " + arrayWidth + " long");
+            //Console.WriteLine("Array is " + arrayHeight + " + tall and is " + arrayWidth + " long");
             for (int h = 0; h < arrayHeight; h++)
             {
                 for (int w = 0; w < arrayWidth; w++)
