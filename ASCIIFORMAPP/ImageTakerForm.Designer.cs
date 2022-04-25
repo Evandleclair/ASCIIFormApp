@@ -115,7 +115,7 @@
             this.testdraw.TabIndex = 3;
             this.testdraw.Text = "button1";
             this.testdraw.UseVisualStyleBackColor = true;
-            this.testdraw.Click += new System.EventHandler(this.testdraw_Click);
+            
             // 
             // ImageTakerForm
             // 

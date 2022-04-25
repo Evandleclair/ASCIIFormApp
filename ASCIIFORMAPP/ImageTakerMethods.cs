@@ -32,10 +32,19 @@ namespace ASCIIFormApp
         }
         internal RectangleF GetScaledRect(Graphics g, RectangleF r, float xScale, float yScale)
         {
-            return new RectangleF((float)Math.Ceiling(r.X * xScale),
-                                (float)Math.Ceiling(r.Y * yScale),
-                                (float)Math.Ceiling(r.Width * xScale),
-                                (float)Math.Ceiling(r.Height * yScale));
+            Console.WriteLine((float)r.X);
+            Console.WriteLine((float)r.Y);
+            Console.WriteLine((float)r.Width);
+            Console.WriteLine((float)r.Height);
+            Console.WriteLine((float)(r.X * xScale));
+            Console.WriteLine((float)(r.Y * yScale));
+            Console.WriteLine((float)(r.Width * xScale));
+            Console.WriteLine((float)(r.Height * yScale));
+
+            return new RectangleF((float)(r.X * xScale),
+                                (float)(r.Y * yScale),
+                                (float)(r.Width * xScale),
+                                (float)(r.Height * yScale));
             /*
              *  return new Rectangle((int)Math.Ceiling(r.X * xScale),
                                 (int)Math.Ceiling(r.Y * yScale),
