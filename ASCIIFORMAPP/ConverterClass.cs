@@ -18,15 +18,17 @@ namespace ASCIIFormApp
             
             using (Bitmap image = new Bitmap(rt.rawFilePath))
             {
-                Console.WriteLine("SIZE IS " + image.Width.ToString() + " " + image.Height.ToString());
-                imgArray.imgColorArray = ToColorArray(image);
-                imgArray.imgIntArray = colorToBrightness(imgArray.imgColorArray);
-                imgArray.fileLoc = rt.rawFilePath;
-                imgArray.imgH = image.Height;
-                imgArray.imgW = image.Width;
+                Size imageScale = new Size((int)(image.Width*0.80), (int)(image.Height*0.4));
+                using (Bitmap resizedImage = new Bitmap(image,imageScale))
+                {
+                    Console.WriteLine("SIZE IS " + resizedImage.Width.ToString() + " " + resizedImage.Height.ToString());
+                    imgArray.imgColorArray = ToColorArray(resizedImage);
+                    imgArray.imgIntArray = colorToBrightness(imgArray.imgColorArray);
+                    imgArray.fileLoc = rt.rawFilePath;
+                    imgArray.imgH = resizedImage.Height;
+                    imgArray.imgW = resizedImage.Width;
+                }
             }
-            //Console.WriteLine(ToReadByteArray(imgArray.imgByteArray));
-            //Console.WriteLine(imgArray.imgByteArray[0].ToString());
             return imgArray;
         }
 
@@ -48,11 +50,6 @@ namespace ASCIIFormApp
                 }
                 sb.Append("\r\n");
             }
-           // Console.WriteLine(sb.ToString());
-            // foreach (byte b in myHandler.heldImageArray.imgByteArray)
-            // {
-            //     Console.WriteLine(b.ToString());
-            // }
             myHandler.heldASCIIImage=sb.ToString();
         }
        

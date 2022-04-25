@@ -61,8 +61,8 @@ namespace ASCIIFormApp
             if (myHandler.heldASCIIImage != null)
             {
                 Graphics g = e.Graphics;
-                Font myFont = new(FontFamily.GenericMonospace, 12, FontStyle.Regular);
-
+                Font myFont = new(FontFamily.GenericMonospace, 12, FontStyle.Regular, GraphicsUnit.Pixel);
+                g.SetClip(Bounds);
                 Size canvasSize = canvasBox1.Size;
                 SizeF realSize = TextRenderer.MeasureText(myHandler.heldASCIIImage, myFont, canvasSize);
 
