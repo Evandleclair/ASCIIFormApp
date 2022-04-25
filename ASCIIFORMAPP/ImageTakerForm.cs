@@ -26,20 +26,18 @@ namespace ASCIIFormApp
 
         private void LoadImageButton_Click(object sender, EventArgs e)
         {
-            myHandler.failureFlag = false;
-           myMethodBank.LoadAndConvertImage(myHandler);
-           if (myHandler.failureFlag!=true)
-           {
-                ConverterClass.ConvertToASCII(myHandler);
-                canvasBox1.Refresh();
+            myMethodBank.LoadImage(myHandler);
+            if (myHandler.failureFlag==false)
+            {
+                filenameBox.Text = myHandler.heldImagePath;
             }
-           else
-           {
-                Console.WriteLine("Unable to convert image to ASCII due to an error. Please try again");
-           }
+        }
+        private void convertImageButton_Click(object sender, EventArgs e)
+        {
+            myMethodBank.ConvertImage(myHandler);
+            canvasBox1.Refresh();
         }
 
-       
         private void ImageTakerForm_Load(object sender, EventArgs e)
         {
             AllocConsole();
@@ -53,13 +51,13 @@ namespace ASCIIFormApp
 
         private void CanvasBox1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            if (myHandler.heldASCIIImage != null)
+            if (myHandler.heldASCIIString != null)
             {
                 Graphics g = e.Graphics;
                 Font myFont = new(FontFamily.GenericMonospace, 12, FontStyle.Regular, GraphicsUnit.Pixel);
                 g.SetClip(Bounds);
                 Size canvasSize = canvasBox1.Size;
-                SizeF realSize = TextRenderer.MeasureText(myHandler.heldASCIIImage, myFont, canvasSize);
+                SizeF realSize = TextRenderer.MeasureText(myHandler.heldASCIIString, myFont, canvasSize);
 
                 float hScaleRatio = canvasSize.Height / realSize.Height;
                 float wScaleRatio = canvasSize.Width / realSize.Width;
@@ -71,9 +69,11 @@ namespace ASCIIFormApp
 #pragma warning restore IDE0059 // Unnecessary assignment of a value
   
                 var flags = TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix;
-                TextRenderer.DrawText(g, myHandler.heldASCIIImage, myMethodBank.GetScaledFont(myFont, scaleRatio), canvasBox1.Bounds, Color.White, Color.Black, flags);
+                TextRenderer.DrawText(g, myHandler.heldASCIIString, myMethodBank.GetScaledFont(myFont, scaleRatio), canvasBox1.Bounds, Color.White, Color.Black, flags);
                 //TextRenderer.DrawText(g, myHandler.heldASCIIImage, myMethodBank.GetScaledFont(g,myFont, scaleRatio), rSimp, Color.White, Color.Black, flags);
             }
         }
+
+       
     }
 }
