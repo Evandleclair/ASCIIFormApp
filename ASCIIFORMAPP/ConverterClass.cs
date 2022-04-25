@@ -12,29 +12,27 @@ namespace ASCIIFormApp
         //static readonly char[] charKey = "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrieuxnuvczXYUJCLQ0OZnmwqpdbkhcao*#NMW&8%B@@$".ToCharArray();
         static readonly char[] charKey = "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrieuxnuvczXYUJCLQ0OZnmwqpdbkhcao*#NMW&8%B@@$".ToCharArray();
 
-        internal static imageArray loadImage(rawTextFile rt)
+        internal static imageArray LoadImage(rawTextFile rt)
         {
             imageArray imgArray;
             
-            using (Bitmap image = new Bitmap(rt.rawFilePath))
+            using (Bitmap image = new(rt.rawFilePath))
             {
                 Size imageScale = new((int)(image.Width*0.80), (int)(image.Height*0.4));
-                using (Bitmap resizedImage = new Bitmap(image,imageScale))
-                {
-                    Console.WriteLine("SIZE IS " + resizedImage.Width.ToString() + " " + resizedImage.Height.ToString());
-                    imgArray.imgColorArray = ToColorArray(resizedImage);
-                    imgArray.imgIntArray = colorToBrightness(imgArray.imgColorArray);
-                    imgArray.fileLoc = rt.rawFilePath;
-                    imgArray.imgH = resizedImage.Height;
-                    imgArray.imgW = resizedImage.Width;
-                }
+                using Bitmap resizedImage = new(image, imageScale);
+                Console.WriteLine("SIZE IS " + resizedImage.Width.ToString() + " " + resizedImage.Height.ToString());
+                imgArray.imgColorArray = ToColorArray(resizedImage);
+                imgArray.imgIntArray = ColorToBrightness(imgArray.imgColorArray);
+                imgArray.fileLoc = rt.rawFilePath;
+                imgArray.imgH = resizedImage.Height;
+                imgArray.imgW = resizedImage.Width;
             }
             return imgArray;
         }
 
         internal static void ConvertToASCII(DataHandler myHandler)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             
             for (int h = 0; h < myHandler.heldImageArray.imgH; h++)
             {
@@ -67,7 +65,7 @@ namespace ASCIIFormApp
             }
             return myMatrix;
         }
-        internal static int[,] colorToBrightness(Color[][] cArray)
+        internal static int[,] ColorToBrightness(Color[][] cArray)
         {
             int arrayHeight = cArray.Length;
             int arrayWidth = cArray[0].Length;

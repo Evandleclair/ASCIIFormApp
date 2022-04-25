@@ -72,7 +72,7 @@
             this.loadImageButton.TabIndex = 0;
             this.loadImageButton.Text = "LOAD IMAGE";
             this.loadImageButton.UseVisualStyleBackColor = true;
-            this.loadImageButton.Click += new System.EventHandler(this.loadImageButton_Click);
+            this.loadImageButton.Click += new System.EventHandler(this.LoadImageButton_Click);
             // 
             // canvasPanel
             // 

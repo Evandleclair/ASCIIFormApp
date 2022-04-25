@@ -14,8 +14,8 @@ namespace ASCIIFormApp
 {
     public partial class ImageTakerForm : Form
     {
-        private readonly DataHandler myHandler = new DataHandler();
-        private readonly ImageTakerMethods myMethodBank = new ImageTakerMethods();
+        private readonly DataHandler myHandler = new();
+        private readonly ImageTakerMethods myMethodBank = new();
        
         public ImageTakerForm()
         {
@@ -24,7 +24,7 @@ namespace ASCIIFormApp
             canvasBox1.Paint += new System.Windows.Forms.PaintEventHandler(CanvasBox1_Paint);
         }
 
-        private void loadImageButton_Click(object sender, EventArgs e)
+        private void LoadImageButton_Click(object sender, EventArgs e)
         {
             myHandler.failureFlag = false;
            myMethodBank.LoadAndConvertImage(myHandler);
@@ -39,11 +39,7 @@ namespace ASCIIFormApp
            }
         }
 
-        private void OpenWebcamButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
+       
         private void ImageTakerForm_Load(object sender, EventArgs e)
         {
             AllocConsole();
@@ -68,12 +64,14 @@ namespace ASCIIFormApp
                 float hScaleRatio = canvasSize.Height / realSize.Height;
                 float wScaleRatio = canvasSize.Width / realSize.Width;
 
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
                 float scaleRatio = (hScaleRatio < wScaleRatio)
                    ? scaleRatio = hScaleRatio
                    : scaleRatio = wScaleRatio;
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
   
                 var flags = TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix;
-                TextRenderer.DrawText(g, myHandler.heldASCIIImage, myMethodBank.GetScaledFont(g, myFont, scaleRatio), canvasBox1.Bounds, Color.White, Color.Black, flags);
+                TextRenderer.DrawText(g, myHandler.heldASCIIImage, myMethodBank.GetScaledFont(myFont, scaleRatio), canvasBox1.Bounds, Color.White, Color.Black, flags);
                 //TextRenderer.DrawText(g, myHandler.heldASCIIImage, myMethodBank.GetScaledFont(g,myFont, scaleRatio), rSimp, Color.White, Color.Black, flags);
             }
         }
