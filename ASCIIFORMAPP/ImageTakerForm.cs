@@ -61,49 +61,21 @@ namespace ASCIIFormApp
             if (myHandler.heldASCIIImage != null)
             {
                 Graphics g = e.Graphics;
-                Font myFont = new(FontFamily.GenericMonospace, 12, FontStyle.Regular);
-
-                //Size canvasSize = Bounds.Size;
+                Font myFont = new(FontFamily.GenericMonospace, 12, FontStyle.Regular, GraphicsUnit.Pixel);
+                g.SetClip(Bounds);
                 Size canvasSize = canvasBox1.Size;
-                SizeF RealSize = TextRenderer.MeasureText(myHandler.heldASCIIImage, myFont, canvasSize);
+                SizeF realSize = TextRenderer.MeasureText(myHandler.heldASCIIImage, myFont, canvasSize);
 
-                float hScaleRatio = canvasSize.Height / RealSize.Height;
-                float wScaleRatio;
-                if (canvasSize.Width < RealSize.Width)
-                {
-                    wScaleRatio = canvasSize.Width / RealSize.Width;
-                } 
-                else
-                {
-                     wScaleRatio = RealSize.Width / canvasSize.Width;
-                }
-                
-                float ScaleRatio = wScaleRatio;
-                if (hScaleRatio<wScaleRatio)
-                {
-                    ScaleRatio = hScaleRatio;
-                }
-                float translate = 200F;
-                var mx = new Matrix();
+                float hScaleRatio = canvasSize.Height / realSize.Height;
+                float wScaleRatio = canvasSize.Width / realSize.Width;
+
+                float scaleRatio = (hScaleRatio < wScaleRatio)
+                   ? scaleRatio = hScaleRatio
+                   : scaleRatio = wScaleRatio;
+  
                 var flags = TextFormatFlags.NoPadding | TextFormatFlags.NoPrefix;
-
-                mx.Scale(wScaleRatio, hScaleRatio);
-
-                mx.Translate(translate,translate);
-                g.Clip = new Region(Bounds);
-                g.Transform = mx;
-               
-
-                //RectangleF rendererRect = new RectangleF(0, 0, RealSize.Width, RealSize.Height);
-                Point picBoxCoordinates = PointToScreen(canvasBox1.Location);
-                Console.WriteLine("canvas xy is " + picBoxCoordinates.X + " " + picBoxCoordinates.Y);
-                Console.WriteLine("canvas width height is " + canvasBox1.Width + " " + canvasBox1.Height);
-                RectangleF rendererRect = new RectangleF(picBoxCoordinates.X, picBoxCoordinates.Y, RealSize.Width, RealSize.Height);
-                RectangleF r = myMethodBank.GetScaledRect(g, rendererRect, wScaleRatio,hScaleRatio);
-                Rectangle rSimp = Rectangle.Round(r);
-                Console.WriteLine("Canvas H ratio " + hScaleRatio + " canvas W  ratio" + wScaleRatio + " and the dimensions were CANVAS HW " + canvasBox1.Height + " " + canvasBox1.Width + " Text HW real " + RealSize.Height + " " + RealSize.Width + " rezied HW " + r.Height + " " + r.Width);
-
-                TextRenderer.DrawText(g, myHandler.heldASCIIImage, myMethodBank.GetScaledFont(g,myFont, ScaleRatio), rSimp, Color.White, Color.Black, flags);
+                TextRenderer.DrawText(g, myHandler.heldASCIIImage, myMethodBank.GetScaledFont(g, myFont, scaleRatio), canvasBox1.Bounds, Color.White, Color.Black, flags);
+                //TextRenderer.DrawText(g, myHandler.heldASCIIImage, myMethodBank.GetScaledFont(g,myFont, scaleRatio), rSimp, Color.White, Color.Black, flags);
             }
         }
     }
