@@ -124,6 +124,7 @@
             this.convertImageButton.TabIndex = 4;
             this.convertImageButton.Text = "CONVERT IMAGE";
             this.convertImageButton.UseVisualStyleBackColor = true;
+            this.convertImageButton.Click += new System.EventHandler(this.convertImageButton_Click);
             // 
             // ImageTakerForm
             // 

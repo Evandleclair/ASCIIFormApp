@@ -8,11 +8,10 @@ namespace ASCIIFormApp
 {
     internal class DataHandler
     {
-        internal imageArray heldImageArray;
-        internal string heldASCIIImage;
-        //internal brightnessArray heldBrightnessArray;
-           internal bool failureFlag = false;
-        //internal string fileLocation;
+        internal imageObj heldImageObj;
+        internal string heldImagePath;
+        internal string heldASCIIString;
+        internal bool failureFlag = false; //this should prevent the loading of a bad image. is set to true if the program encounters an exception while loading an image//
         internal Rectangle CanvasPanelBounds;
     }
 }
