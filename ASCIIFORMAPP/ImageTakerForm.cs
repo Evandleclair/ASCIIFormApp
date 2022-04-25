@@ -14,13 +14,12 @@ namespace ASCIIFormApp
 {
     public partial class ImageTakerForm : Form
     {
-        DataHandler myHandler;
-        ImageTakerMethods myMethodBank;
+        private readonly DataHandler myHandler = new DataHandler();
+        private readonly ImageTakerMethods myMethodBank = new ImageTakerMethods();
+       
         public ImageTakerForm()
         {
             InitializeComponent();
-           myHandler = new DataHandler();
-        myMethodBank = new ImageTakerMethods();
             myHandler.CanvasPanelBounds = canvasBox1.Bounds;
             canvasBox1.Paint += new System.Windows.Forms.PaintEventHandler(CanvasBox1_Paint);
         }

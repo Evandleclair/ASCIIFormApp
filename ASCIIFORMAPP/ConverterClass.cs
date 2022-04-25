@@ -18,7 +18,7 @@ namespace ASCIIFormApp
             
             using (Bitmap image = new Bitmap(rt.rawFilePath))
             {
-                Size imageScale = new Size((int)(image.Width*0.80), (int)(image.Height*0.4));
+                Size imageScale = new((int)(image.Width*0.80), (int)(image.Height*0.4));
                 using (Bitmap resizedImage = new Bitmap(image,imageScale))
                 {
                     Console.WriteLine("SIZE IS " + resizedImage.Width.ToString() + " " + resizedImage.Height.ToString());

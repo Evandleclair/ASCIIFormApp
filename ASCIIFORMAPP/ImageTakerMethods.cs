@@ -10,8 +10,8 @@ namespace ASCIIFormApp
     {
         internal void LoadAndConvertImage(DataHandler dataHandler)
         {
-            rawTextFile rawText = new rawTextFile();
-            rawText=LoadImageDialog(dataHandler);
+            // _ = new rawTextFile();
+            rawTextFile rawText = LoadImageDialog(dataHandler);
             if (rawText.rawFileContent !="failure")
             { 
                 dataHandler.heldImageArray=ConverterClass.loadImage(rawText);
@@ -26,12 +26,12 @@ namespace ASCIIFormApp
             return new Font(f.FontFamily,
                             f.SizeInPoints * scale,
                             f.Style,
-                            GraphicsUnit.Point,
+                            GraphicsUnit.Pixel,
                             f.GdiCharSet,
                             f.GdiVerticalFont);
         }
       
-        internal rawTextFile LoadImageDialog(DataHandler dataHandler)
+        internal static rawTextFile LoadImageDialog(DataHandler dataHandler)
         {
             try{
                 string retFilePath = retFilePath = "";

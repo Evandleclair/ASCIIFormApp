@@ -33,8 +33,8 @@
             this.canvasPanel = new System.Windows.Forms.Panel();
             this.canvasBox1 = new System.Windows.Forms.PictureBox();
             this.filenamePanel = new System.Windows.Forms.Panel();
+            this.filenameBox = new System.Windows.Forms.TextBox();
             this.convertImageButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.buttonLayoutPanel.SuspendLayout();
             this.canvasPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.canvasBox1)).BeginInit();
@@ -100,12 +100,20 @@
             // filenamePanel
             // 
             this.buttonLayoutPanel.SetColumnSpan(this.filenamePanel, 2);
-            this.filenamePanel.Controls.Add(this.textBox1);
+            this.filenamePanel.Controls.Add(this.filenameBox);
             this.filenamePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.filenamePanel.Location = new System.Drawing.Point(3, 89);
             this.filenamePanel.Name = "filenamePanel";
             this.filenamePanel.Size = new System.Drawing.Size(803, 28);
             this.filenamePanel.TabIndex = 3;
+            // 
+            // filenameBox
+            // 
+            this.filenameBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.filenameBox.Location = new System.Drawing.Point(0, 0);
+            this.filenameBox.Name = "filenameBox";
+            this.filenameBox.Size = new System.Drawing.Size(803, 23);
+            this.filenameBox.TabIndex = 0;
             // 
             // convertImageButton
             // 
@@ -116,14 +124,6 @@
             this.convertImageButton.TabIndex = 4;
             this.convertImageButton.Text = "CONVERT IMAGE";
             this.convertImageButton.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(803, 23);
-            this.textBox1.TabIndex = 0;
             // 
             // ImageTakerForm
             // 
@@ -155,7 +155,7 @@
         private Panel canvasPanel;
         private PictureBox canvasBox1;
         private Panel filenamePanel;
-        private TextBox textBox1;
+        private TextBox filenameBox;
         private Button convertImageButton;
     }
 }
