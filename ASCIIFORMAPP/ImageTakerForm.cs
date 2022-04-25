@@ -54,10 +54,7 @@ namespace ASCIIFormApp
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
 
-        private void testdraw_Click(object sender, EventArgs e)
-        {
-            
-        }
+
 
         private void CanvasBox1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
@@ -65,8 +62,9 @@ namespace ASCIIFormApp
             {
                 Graphics g = e.Graphics;
                 Font myFont = new(FontFamily.GenericMonospace, 12, FontStyle.Regular);
-          
-                Size canvasSize = Bounds.Size;
+
+                //Size canvasSize = Bounds.Size;
+                Size canvasSize = canvasBox1.Size;
                 SizeF RealSize = TextRenderer.MeasureText(myHandler.heldASCIIImage, myFont, canvasSize);
 
                 float hScaleRatio = canvasSize.Height / RealSize.Height;
@@ -96,7 +94,11 @@ namespace ASCIIFormApp
                 g.Transform = mx;
                
 
-                RectangleF rendererRect = new RectangleF(0, 0, RealSize.Width, RealSize.Height);
+                //RectangleF rendererRect = new RectangleF(0, 0, RealSize.Width, RealSize.Height);
+                Point picBoxCoordinates = PointToScreen(canvasBox1.Location);
+                Console.WriteLine("canvas xy is " + picBoxCoordinates.X + " " + picBoxCoordinates.Y);
+                Console.WriteLine("canvas width height is " + canvasBox1.Width + " " + canvasBox1.Height);
+                RectangleF rendererRect = new RectangleF(picBoxCoordinates.X, picBoxCoordinates.Y, RealSize.Width, RealSize.Height);
                 RectangleF r = myMethodBank.GetScaledRect(g, rendererRect, wScaleRatio,hScaleRatio);
                 Rectangle rSimp = Rectangle.Round(r);
                 Console.WriteLine("Canvas H ratio " + hScaleRatio + " canvas W  ratio" + wScaleRatio + " and the dimensions were CANVAS HW " + canvasBox1.Height + " " + canvasBox1.Width + " Text HW real " + RealSize.Height + " " + RealSize.Width + " rezied HW " + r.Height + " " + r.Width);
