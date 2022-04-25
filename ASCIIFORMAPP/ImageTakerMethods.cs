@@ -8,36 +8,54 @@ namespace ASCIIFormApp
 {
      internal class ImageTakerMethods
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataHandler"></param>
+        #pragma warning disable CA1822 // Cannot mark as static due to outside references//
         internal void LoadAndConvertImage(DataHandler dataHandler)
+        #pragma warning restore CA1822 // Cannot mark as static due to outside references//
         {
-            rawTextFile rawText = new rawTextFile();
-            rawText=LoadImageDialog(dataHandler);
+            // _ = new rawTextFile();
+            rawTextFile rawText = LoadImageDialog(dataHandler);
             if (rawText.rawFileContent !="failure")
             { 
-                dataHandler.heldImageArray=ConverterClass.loadImage(rawText);
+                dataHandler.heldImageArray=ConverterClass.LoadImage(rawText);
             }//end if//
             else
             {
                 Console.WriteLine("Failed to load image. Please try again");
             }
         }//end LoadAndConvertImage//
-        internal Font GetScaledFont(Graphics g, Font f, float scale)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="f"></param>
+        /// <param name="scale"></param>
+        /// <returns></returns>
+#pragma warning disable CA1822 // Mark members as static
+        internal Font GetScaledFont( Font f, float scale) 
+#pragma warning restore CA1822 // Mark members as static
         {
             return new Font(f.FontFamily,
                             f.SizeInPoints * scale,
                             f.Style,
-                            GraphicsUnit.Point,
+                            GraphicsUnit.Pixel,
                             f.GdiCharSet,
                             f.GdiVerticalFont);
         }
-      
-        internal rawTextFile LoadImageDialog(DataHandler dataHandler)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataHandler"></param>
+        /// <returns></returns>
+        internal static rawTextFile LoadImageDialog(DataHandler dataHandler)
         {
             try{
                 string retFilePath = retFilePath = "";
-                rawTextFile retVal = new rawTextFile(retFilePath, "");
+                rawTextFile retVal = new(retFilePath, "");
 
-                using (OpenFileDialog fileDlog = new OpenFileDialog())
+                using (OpenFileDialog fileDlog = new())
                 {
                     fileDlog.InitialDirectory = "c:\\";
                     fileDlog.Filter = "Image Files|*.jpg;*.jpeg;*.png;|All files (*.*)|*.*";

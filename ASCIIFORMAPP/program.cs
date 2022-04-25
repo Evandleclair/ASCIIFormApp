@@ -1,6 +1,6 @@
 namespace ASCIIFormApp
 {
-    internal static class program
+    internal static class Program
     {
         /// <summary>
         ///  The main entry point for the application.
